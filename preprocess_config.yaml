@@ -1,0 +1,36 @@
+#### Log number
+# CRITICAL = 50
+# ERROR = 40
+# WARNING = 30
+# INFO = 20
+# DEBUG = 10
+# NOTSET = 0
+
+preprocess:
+  # date format is dd-mm-yyyy
+  start_date: 01-01-2023
+  stop_date: 02-01-2023
+  bounding_box: ## The bounding for limiting the aggregation
+    lat_range: [5.4,20.6]
+    lon_range: [97.1,106.0]
+  timezone: '+7' ## Timezone for querying the raw files
+  imerg:
+    columns:
+      longitude: lon
+      latitude: lat
+      value: precipitationCal
+    source_path: /root/projects/data/imerg
+    aggregated_path: /root/projects/data_preprocessed/imerg
+    geotiff_path: /root/projects/data_preprocessed/imerg
+  imerg_multiband:
+    columns:
+      longitude: lon
+      latitude: lat
+      values: 
+        - precipitationCal
+        - precipitationUncal
+    source_path: /root/projects/data/IMERG
+    aggregated_path: /root/projects/data_preprocessed/IMERG_multiband
+    geotiff_path: /root/projects/data_preprocessed/IMERG_multiband
+  threads: -1 # -1: use all server threads
+  log_level: 20
