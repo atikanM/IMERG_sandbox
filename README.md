@@ -1,3 +1,9 @@
+* Prerequisite
+- \> pip install netCDF4
+- \> pip install h5py
+- \> pip install rioxarray
+- \> pip install rasterio
+
 - **Download IMERG HDF5 to ./IMERG**
     - EX: Download 01/02/2023
     - Path: ./IMERG/2023/001/XXXX.hdf5 (หลายๆตัว)
