@@ -18,6 +18,10 @@ import rioxarray
 from rasterio.enums import Resampling
 import time
 
+from datetime import datetime, timedelta
+from typing import Generator
+
+# Variable / Parameter Configuration
 THREADS:int = -1
 if(THREADS == -1):
     THREADS = mp.cpu_count()
@@ -37,6 +41,11 @@ SOURCE_PATH:str = './IMERG'
 AGGREGATED_PATH:str = './IMERG_Processed_Multiband'
 GEOTIFF_PATH:str = './IMERG_Geotiff'
 TIMEZONE:str = '+7'
+
+
+def date_range(start_date:datetime, stop_date:datetime) -> Generator[datetime, None, None]:
+    for n in range(int((stop_date - start_date + timedelta(1)).days)):
+        yield start_date + timedelta(n)
 
 
 def _get_filelist(timezone:str, target_day:datetime):
@@ -230,6 +239,9 @@ def preprocess(start_date:datetime, stop_date:datetime) -> None:
 if __name__ == "__main__":
     start_date = datetime.strptime('02-01-2023', '%d-%m-%Y')
     stop_date = datetime.strptime('02-01-2023', '%d-%m-%Y')
+
+    preprocess(start_date, stop_date)
+    
     # timezone= '+7'
 
     # bounding_box = {
@@ -268,5 +280,3 @@ if __name__ == "__main__":
     # AGGREGATED_PATH:str = './IMERG_Processed_Multiband'
     # GEOTIFF_PATH:str = './IMERG_Geotiff'
     # TIMEZONE:str = '+7'
-
-    preprocess(start_date, stop_date)
