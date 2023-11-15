@@ -1,8 +1,8 @@
-* Prerequisite
-\> pip install netCDF4
-\> pip install h5py
-\> pip install rioxarray
-\> pip install rasterio
+Prerequisite
+- \> pip install netCDF4
+- \> pip install h5py
+- \> pip install rioxarray
+- \> pip install rasterio
 
 <br/>
 
